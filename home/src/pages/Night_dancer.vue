@@ -47,5 +47,13 @@
 <template>
 	<link rel='preload' href='https://fonts.googleapis.com/css2?family=Montserrat&display=swap' as='style'>
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat&display=swap'>
-	<Lyrics :fullscreen='true' :volume='music.volume' :title='music.title' :links='music.links' :lyrics='music.lyrics' :font='music.font' :color_background='music.color_background' :colors='music.colors' :url='music.url'></Lyrics>
+	<Lyrics :fullscreen='true'
+		:volume='music.volume'
+		:title='music.title'
+		:links='music.links'
+		:lyrics='music.lyrics'
+		:font='music.font'
+		:color_background='music.color_background'
+		:colors='music.colors'
+		:url='music.url'></Lyrics>
 </template>

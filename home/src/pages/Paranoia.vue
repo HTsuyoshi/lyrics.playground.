@@ -121,5 +121,13 @@
 
 <template>
 	<link rel='preload' href='fonts/AoyagiSosekiFont2.otf' as='font' crossorigin='anonymous'>
-	<Lyrics :fullscreen='true' :volume='music.volume' :title='music.title' :links='music.links' :lyrics='music.lyrics' :font='music.font' :color_background='music.color_background' :colors='music.colors' :url='music.url'></Lyrics>
+	<Lyrics :fullscreen='true'
+		:volume='music.volume'
+		:title='music.title'
+		:links='music.links'
+		:lyrics='music.lyrics'
+		:font='music.font'
+		:color_background='music.color_background'
+		:colors='music.colors'
+		:url='music.url'></Lyrics>
 </template>

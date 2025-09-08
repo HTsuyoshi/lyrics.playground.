@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 	import { ref, onMounted } from 'vue';
 	import { onBeforeRouteLeave } from 'vue-router';
-	import { Scene, Menu, get_random } from '../lib/Lyrics.ts'
+	import { Scene, MusicMenu, get_random } from '../lib/Lyrics.ts'
 
 	type Lyric = {
 		text: string;
@@ -98,7 +98,7 @@
 	}
 
 	let scene: Scene;
-	let menu: Menu;
+	let menu: MusicMenu;
 
 	const audio = new Audio(props.url);
 	audio.volume = props.volume;
@@ -121,7 +121,8 @@
 		}
 		next();
 	});
-	
+
+
 	window.addEventListener (
 		'mousemove',
 		(e) => {
@@ -165,7 +166,7 @@
 			}
 		);
 
-		menu = new Menu(props.font, props.title, props.links, color, ctx, win);
+		menu = new MusicMenu(props.font, color, ctx, win, props.title, props.links);
 		scene = new Scene(props.font, props.lyrics, color, ctx, win);
 
 		function draw_animation(): void {
