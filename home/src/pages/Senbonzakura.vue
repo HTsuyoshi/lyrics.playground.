@@ -27,7 +27,7 @@
 	];
 
 	const music = {
-		volume: 0.5,
+		volume: 0.3,
 		title: 'Senbonzakura',
 		links: [ '@Kurousa-P', '@HatsuneMiku'],
 		lyrics: lyric,

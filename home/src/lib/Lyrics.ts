@@ -1,4 +1,4 @@
-import router from '../router' // ✅ adjust the path to your router file
+import router from '../router'
 
 // Essential functions
 export function get_random(min: number, max: number): number {
@@ -705,8 +705,6 @@ export class SelectionMenu implements Menu {
 	}
 
 	private _draw_selection(): void {
-		//this.ctx.fillStyle = this.color.background;
-		//this.ctx.strokeStyle = this.color.colors[0];
 		this.ctx.fillStyle = this.color.colors[0];
 		this.ctx.fillText(
 			this.music_list[this.music_index].name,

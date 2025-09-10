@@ -58,7 +58,7 @@
 			{ text: 'のー', time: 3.0 },
 			{ text: 'のー', time: 3.0 },
 			{ text: '声', time: 1.5 },
-			{ text: '', time: 0.5 },
+			{ text: 'が', time: 0.5 },
 			{ text: '遠い', time: 0.5 },
 			{ text: '遠い', time: 0.5 },
 			{ text: '遠い', time: 0.5 },

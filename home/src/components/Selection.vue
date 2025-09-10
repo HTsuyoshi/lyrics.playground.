@@ -81,9 +81,24 @@
 			img: '/images/cupid.png',
 		},
 		{
-			name: 'Paranoia (パラノイア)',
+			name: 'Paranoia',
 			url: 'paranoia',
 			img: '/images/paranoia.png',
+		},
+		{
+			name: 'Mirror',
+			url: 'mirror',
+			img: '/images/mirror.png',
+		},
+		{
+			name: 'Echo',
+			url: 'echo',
+			img: '/images/echo.png',
+		},
+		{
+			name: 'Montagem xonada',
+			url: 'montagem_xonada',
+			img: '/images/montagem_xonada.png',
 		},
 	];
 
