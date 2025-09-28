@@ -381,7 +381,6 @@ export class Background {
 
 	private _draw_vertical(progress_inverse_quint: number): void {
 		const rect_size = progress_inverse_quint * this.win.h * 0.2;
-		this.color.colors[0];
 		this.ctx.fillRect(0, 0, this.win.w, this.win.h2 - rect_size / 2);
 		this.ctx.fillRect(0, this.win.h2 + rect_size / 2,
 			this.win.w, this.win.h2 - rect_size / 2);
@@ -433,6 +432,12 @@ export class Scene {
 		draw_style: WORD_STYLE,
 		draw_style_length: number
 	};
+	volume_control: {
+		animation: number,
+		width: number,
+		heigth: number,
+		gap: number
+	};
 
 
 	constructor(font: string, lyrics: Lyric[],
@@ -479,6 +484,13 @@ export class Scene {
 			shapes: [],
 			draw_style: draw_style,
 			draw_style_length: draw_style_length
+		};
+
+		this.volume_control = {
+			animation: 0.0,
+			width: 100,
+			heigth: 20,
+			gap: 20,
 		};
 	}
 
@@ -551,6 +563,36 @@ export class Scene {
 		this.ctx.strokeStyle = this.options.color.colors[0];
 	}
 
+	private _draw_volume_button(volume: number): void {
+		if (this.render.draw_style == WORD_STYLE.BACKGROUND) {
+			const color: string = colorTransition(this.volume_control.animation,
+													this.options.color.colors[0],
+													this.options.color.background);
+			console.log(this.volume_control.animation);
+			console.log(color);
+			this.ctx.strokeStyle = color;
+			this.ctx.fillStyle = color;
+		} else {
+			const color: string = colorTransition(this.volume_control.animation,
+													this.options.color.background,
+													this.options.color.colors[0]);
+			console.log(this.volume_control.animation);
+			console.log(color);
+			this.ctx.strokeStyle = color;
+			this.ctx.fillStyle = color;
+		}
+		this.ctx.strokeRect(
+			this.volume_control.gap,
+			this.volume_control.gap,
+			this.volume_control.width,
+			this.volume_control.heigth);
+		this.ctx.fillRect(
+			this.volume_control.gap,
+			this.volume_control.gap,
+			this.volume_control.width * volume,
+			this.volume_control.heigth);
+	}
+
 	private _draw(): void {
 		this.ctx.fillStyle = this.options.color.background;
 		this.ctx.fillRect(0, 0, this.win.w, this.win.h);
@@ -566,7 +608,11 @@ export class Scene {
 		this.render.background.update(this.options.progress.inverse_quint);
 	}
 
-	public update(time: number): void {
+	public update(
+		time: number,
+		volume: number,
+		mouse: { x: number, y: number }
+	): void {
 		if (!this.options.play) return;
 		let time_gap = 0;
 		for (let i = 0; i < this.lyrics.index; ++i) {
@@ -592,6 +638,29 @@ export class Scene {
 			};
 		}
 		this._draw();
+
+		if (mouse.x >= 0 &&
+			mouse.x <= this.volume_control.width + (this.volume_control.gap * 2) &&
+			mouse.y >= 0 &&
+			mouse.y <= this.volume_control.heigth + (this.volume_control.gap * 2)) {
+			if (this.volume_control.animation < 1) this.volume_control.animation += 0.05;
+		} else {
+			if (this.volume_control.animation > 0) this.volume_control.animation -= 0.05;
+			if (this.volume_control.animation < 0) this.volume_control.animation = 0;
+		}
+		this._draw_volume_button(volume);
+	}
+
+	public change_volume(
+		mouse: { x: number, y: number }
+	): number {
+		if (mouse.x >= this.volume_control.gap &&
+			mouse.x <= this.volume_control.width + this.volume_control.gap &&
+			mouse.y >= this.volume_control.gap &&
+			mouse.y <= this.volume_control.heigth + this.volume_control.gap) {
+				return ((mouse.x - this.volume_control.gap) / this.volume_control.width);
+			}
+		return -1;
 	}
 }
 
@@ -985,7 +1054,6 @@ export class SelectionMenu implements Menu {
 
 export class MusicMenu implements Menu {
 	// TODO: Botao para voltar para o menu principal
-	// TODO: Volume
 	ctx: CanvasRenderingContext2D;
 	win: { w: number, w2: number, h: number, h2: number }
 	font: string;

@@ -110,6 +110,11 @@
 			if (!menu.hit_button(mouse)) return;
 			audio.play();
 		} else {
+			const new_volume: number = scene.change_volume(mouse);
+			if (new_volume !== -1) {
+				audio.volume = new_volume;
+				return;
+			}
 			audio.pause();
 		}
 		scene.start();
@@ -171,7 +176,7 @@
 
 		function draw_animation(): void {
 			if (audio.paused) menu.update(mouse);
-			else scene.update(audio.currentTime);
+			else scene.update(audio.currentTime, audio.volume, mouse);
 			requestAnimationFrame(draw_animation);
 		}
 
