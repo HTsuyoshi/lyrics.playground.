@@ -4,7 +4,7 @@ The project uses canvas to enhance the aesthetic appeal of lyrics through the ar
 
 ### Preview
 
-Try the application in the following [link](https://playground.htsuyoshiy.online/lyrics) :D
+Try the application in the following [link](https://playground.htsuyoshiy.com.br/lyrics) :D
 
 ## Easing functions
 
